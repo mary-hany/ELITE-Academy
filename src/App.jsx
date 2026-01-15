@@ -3,8 +3,12 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-scroll";
 
-// Import the logo from assets
 import EliteLogo from "./assets/Elite logo .png";
+import PsIcon from "./assets/Ps.jpeg";
+import AiIcon from "./assets/Ai.jpeg";
+import AeIcon from "./assets/Ae.jpeg";
+import IdIcon from "./assets/Id.jpeg";
+import PrIcon from "./assets/Pr.jpeg";
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,21 +26,21 @@ export default function App() {
     {
       name: "Photoshop",
       text: "احترف تعديل الصور والتلاعب بالألوان وتصميم بوستات السوشيال ميديا بطريقة إبداعية",
-      img: "https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg",
+      img: PsIcon,
       gradient: "from-blue-400/20 to-cyan-400/20",
       features: ["تعديل احترافي", "دمج الصور", "التلاعب بالألوان"]
     },
     {
       name: "Illustrator",
       text: "صمم الشعارات والهويات البصرية والرسومات الفيكتورية باحترافية عالية",
-      img: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg",
+      img: AiIcon,
       gradient: "from-indigo-400/20 to-blue-400/20",
       features: ["شعارات احترافية", "رسومات فيكتور", "هويات بصرية"]
     },
     {
-      name: "Adobe",
+      name: "After Effects",
       text: "أبدع في الموشن جرافيك والانيميشن وإضافة المؤثرات البصرية المذهلة.",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn2ln4VI6M5pDI3x7faug2BPrMwixYRFmT7g&s",
+      img: AeIcon,
       gradient: "from-sky-400/20 to-blue-400/20",
       features: ["موشن جرافيك", "انيميشن", "مؤثرات بصرية"],
     },
@@ -80,6 +84,22 @@ export default function App() {
     { number: "95%", label: "نسبة التوظيف" },
     { number: "4.9", label: "تقييم الطلاب" },
     { number: "24/7", label: "دعم فني" },
+  ];
+
+  // Program icons for Mini Elite section
+  const miniElitePrograms = [
+    { program: "Adobe Photoshop", icon: PsIcon },
+    { program: "Adobe Illustrator", icon: AiIcon },
+    { program: "Adobe InDesign", icon: IdIcon },
+  ];
+
+  // Program icons for Super Elite section
+  const superElitePrograms = [
+    { program: "Adobe Photoshop Advanced", icon: PsIcon, level: "متقدم" },
+    { program: "Adobe Illustrator Pro", icon: AiIcon, level: "احترافي" },
+    { program: "Adobe InDesign", icon: IdIcon, level: "متقدم" },
+    { program: "Adobe After Effects", icon: AeIcon, level: "موشن جرافيك" },
+    { program: "Adobe Premiere Pro", icon: PrIcon, level: "مونتاج" },
   ];
 
   return (
@@ -250,7 +270,7 @@ export default function App() {
                         whileHover={{ scale: 1.05, rotate: 2 }}
                         className="flex flex-col items-center justify-center p-4 bg-[#132042] rounded-2xl border border-blue-700/30 hover:border-blue-500/40 transition-all"
                       >
-                        <img src={program.img} alt={program.name} className="w-12 h-12 mb-2" />
+                        <img src={program.img} alt={program.name} className="w-12 h-12 mb-2 rounded-lg object-cover" />
                         <span className="text-sm font-medium text-gray-200">{program.name}</span>
                       </motion.div>
                     ))}
@@ -362,7 +382,7 @@ export default function App() {
                 <div className="relative p-8">
                   <div className="flex items-start gap-6">
                     <div className="bg-[#132042] p-4 rounded-2xl group-hover:scale-110 transition-transform border border-blue-700/30">
-                      <img src={program.img} alt={program.name} className="w-16 h-16" />
+                      <img src={program.img} alt={program.name} className="w-16 h-16 rounded-lg object-cover" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-2xl font-bold mb-3 text-white">{program.name}</h3>
@@ -419,11 +439,7 @@ export default function App() {
                   محتوى الدبلومة - 3 برامج
                 </h3>
                 <div className="space-y-4">
-                  {[
-                    { program: "Adobe Photoshop",  icon: "🎨" },
-                    { program: "Adobe Illustrator", icon: "✏️" },
-                    { program: "Adobe InDesign", icon: "📄" },
-                  ].map((item, i) => (
+                  {miniElitePrograms.map((item, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, x: -20 }}
@@ -432,10 +448,9 @@ export default function App() {
                       className="flex items-center justify-between bg-[#132042] rounded-xl p-4 hover:bg-[#162548] transition-all border border-blue-700/30"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="text-2xl">{item.icon}</span>
+                        <img src={item.icon} alt={item.program} className="w-10 h-10 rounded-lg object-cover" />
                         <span className="font-medium text-gray-200">{item.program}</span>
                       </div>
-                      <span className="text-gray-400 text-sm">{item.hours}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -539,13 +554,7 @@ export default function App() {
                   محتوى شامل ومتقدم - 5 برامج
                 </h3>
                 <div className="space-y-4">
-                  {[
-                    { program: "Adobe Photoshop Advanced", icon: "🎨", level: "متقدم" },
-                    { program: "Adobe Illustrator Pro", icon: "✏️", level: "احترافي" },
-                    { program: "Adobe InDesign", icon: "📄", level: "متقدم" },
-                    { program: "Adobe After Effects", icon: "✨", level: "موشن جرافيك" },
-                    { program: "Adobe Premiere Pro", icon: "🎬", level: "مونتاج" },
-                  ].map((item, i) => (
+                  {superElitePrograms.map((item, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, x: -20 }}
@@ -554,13 +563,12 @@ export default function App() {
                       className="flex items-center justify-between bg-[#132042] rounded-xl p-4 hover:bg-[#162548] transition-all group border border-blue-700/30"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="text-2xl group-hover:scale-110 transition-transform">{item.icon}</span>
+                        <img src={item.icon} alt={item.program} className="w-10 h-10 rounded-lg object-cover group-hover:scale-110 transition-transform" />
                         <div>
                           <div className="font-medium text-gray-200">{item.program}</div>
                           <div className="text-xs text-gray-400">{item.level}</div>
                         </div>
                       </div>
-                      <span className="text-gray-300 text-sm font-semibold">{item.hours}</span>
                     </motion.div>
                   ))}
                 </div>
